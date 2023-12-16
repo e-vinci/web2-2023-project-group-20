@@ -4,11 +4,11 @@ const logger = require('morgan');
 const cors = require('cors');
 
 const corsOptions = {
-  origin: ['http://localhost:8080', 'https://e-baron.github.io'],
+  origin: ['http://localhost:8080', 'https://niromin.github.io'],
 };
 
 const usersRouter = require('./routes/users');
-const pizzaRouter = require('./routes/pizzas');
+const scoreRouter = require('./routes/scores');
 const authsRouter = require('./routes/auths');
 
 const app = express();
@@ -18,10 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(cors(corsOptions));
-
-app.use('/users', usersRouter);
-app.use('/pizzas', pizzaRouter);
-app.use('/auths', authsRouter);
+app.use('/users', cors(corsOptions), usersRouter);
+app.use('/scores', scoreRouter);
+app.use('/auths', cors(corsOptions), authsRouter);
 
 module.exports = app;

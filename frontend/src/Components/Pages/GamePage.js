@@ -1,36 +1,50 @@
 import Phaser from 'phaser';
-import GameScene from '../Game/GameScene';
+import BootScene from '../Game/Scenes/BootScene';
+import PreloadScene from '../Game/Scenes/PreloadScene'
+import StartScene from '../Game/Scenes/StartScene';
+import GameScene from '../Game/Scenes/GameScene';
+import GameOverScene from '../Game/Scenes/GameOverScene';
+import PauseGameScene from '../Game/Scenes/PauseGameScene';
+import TutorialGameScene from '../Game/Scenes/TutorialGameScene';
+
 
 let game;
 
 const GamePage = () => {
+
   const phaserGame = `
-<div id="gameDiv" class="d-flex justify-content-center my-3">
-</div>`;
+  <div id="gameDiv" class="d-flex justify-content-center">
+  </div>`;
 
   const main = document.querySelector('main');
   main.innerHTML = phaserGame;
 
   const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    physics: {
-      default: 'arcade',
-      arcade: {
-        gravity: { y: 300 },
-        debug: false,
-      },
+    scale: {
+      width: 1280,
+      height: 868,
+      autoCenter: Phaser.Scale.CENTER_BOTH,
+      mode: Phaser.Scale.FIT,
+      Audio:true
     },
-    scene: [GameScene],
-    //  parent DOM element into which the canvas created by the renderer will be injected.
+  
+    scene: [BootScene,PreloadScene,StartScene, GameScene, GameOverScene,PauseGameScene, TutorialGameScene],
+    pixelArt: true,
+    physics: {
+      default: "arcade",
+      arcade: {
+        debug: false
+      }
+    },
     parent: 'gameDiv',
-  };
+    dom: {
+        createContainer: true
+    },
+  }
 
-  // there could be issues when a game was quit (events no longer working)
-  // therefore destroy any started game prior to recreate it
   if (game) game.destroy(true);
   game = new Phaser.Game(config);
+
 };
 
 export default GamePage;

@@ -19,10 +19,11 @@ function onNavBarClick() {
       if (!componentToRender) throw Error(`The ${uri} ressource does not exist.`);
 
       componentToRender();
-      window.history.pushState({}, '', usePathPrefix(uri));
+      window.history.pushState({}, '', uri);
     }
   });
 }
+
 
 function onHistoryChange() {
   window.addEventListener('popstate', () => {

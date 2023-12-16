@@ -9,30 +9,39 @@ Content-Type: application/json
     "password":"admin"
 }
 
-### Login the default admin
+### Login an account
 POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
 {
-    "username":"admin",
-    "password":"admin"
+    "username":"ZwinGo",
+    "password":"ZwinGo2023"
 }
 
 
-### Create the manager user
+### Create a duplicate user
 POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-    "username":"manager",
-    "password":"manager"
+    "username":"ZwinGo",
+    "password":"ZwinGo2023"
 }
 
-### Login the manager user
-POST {{baseUrl}}/auths/login
+### Create another user
+POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-    "username":"manager",
-    "password":"manager"
+    "username":"McheikIsUgly",
+    "password":"McheikIsUgly2023"
+}
+
+### Create another user
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username":"GabEstBeau",
+    "password":"GabEstBeau2023"
 }
